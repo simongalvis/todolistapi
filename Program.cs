@@ -5,7 +5,15 @@ using TodoListApi.Domain;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddCors(c =>
+{
+    c.AddDefaultPolicy(pol =>
+    {
+        pol.AllowAnyMethod();
+        pol.AllowAnyHeader();
+        pol.AllowAnyOrigin();
+    });
+});
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -24,7 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
