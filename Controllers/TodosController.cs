@@ -33,7 +33,7 @@ public class TodosController : ControllerBase
         return Accepted(response);
     }
 
-    [HttpDelete("completed-orders")]
+    [HttpDelete("completed-todos")]
     public async Task<ActionResult> RemoveCompletedTodos()
     {
         await _repository.RemoveCompletedTodosAsync();
