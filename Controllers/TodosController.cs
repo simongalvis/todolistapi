@@ -15,6 +15,7 @@ public class TodosController : ControllerBase
     [HttpGet("todos")]
     public async Task<ActionResult> GetTodos()
     {
+        await Task.Delay(5000);
         var data = await _repository.GetAllTodosAsync();
         return Ok(new {data});
     }
