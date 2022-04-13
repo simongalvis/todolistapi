@@ -22,6 +22,7 @@ public class TodosController : ControllerBase
     [HttpPost("todos")]
     public async Task<ActionResult> AddTodo([FromBody] PostTodoItemRequest request)
     {
+        await Task.Delay(new Random().Next(3000,4500)); // don't do this!!
         GetTodoItemResponse response = await _repository.AddTodoItemAsync(request);
         return StatusCode(201, response);
     }
@@ -29,6 +30,7 @@ public class TodosController : ControllerBase
     [HttpPut("completed-todos")]
     public async Task<ActionResult> MarkTodoCompleted([FromBody] GetTodoItemResponse request)
     {
+         await Task.Delay(new Random().Next(3000,4500)); // don't do this!!
         GetTodoItemResponse response = await _repository.MarkTodoCompletedAsync(request);
         return Accepted(response);
     }
